@@ -8,6 +8,7 @@ int main()
     cout<<"Type \"new\" to start a new game"<<endl;
     cout<<"Type \"Load\" to load the game saved before"<<endl;
     cout<<"Type \"exit\" to exit the programm"<<endl;
+    cout<<"Type \"records\" to show the records of the games"<<endl;
 
     string input;
     cin>>input;
@@ -26,7 +27,7 @@ int main()
                 
                 add,delete: add or remove a number in a specific place by editing the array.
                 
-                quit: back to the main menu. Stop the timer
+                quit: back to the main menu. Stop the timer. Add a record to the file.
                 
                 save: save the current game to a file. 
                 It there is already a file with the same name, the new file should replace the old one
@@ -39,6 +40,12 @@ int main()
 
             load_game()
             /* This function is a void function it loads the game saved before for user to play and directly jump to step 3 in new_game().*/
+        }
+
+        else if(input == "record"){
+
+            record()
+            /* This function is a void function it opens the file for records and print it on the screen. The information should be sorted properly*/
         }
 
     }
