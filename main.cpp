@@ -5,17 +5,16 @@ using namespace std;
 
 int main()
 {
-    cout<<"Type \"new\" to start a new game"<<endl;
-    cout<<"Type \"Load\" to load the game saved before"<<endl;
-    cout<<"Type \"exit\" to exit the programm"<<endl;
-    cout<<"Type \"records\" to show the records of the games"<<endl;
-
-    string input;
-    cin>>input;
-    while(input != "exit"){
+    
+    while(true){
+        cout<<"Type \"play\" to start a playing a game"<<endl;
+        cout<<"Type \"exit\" to exit the programm"<<endl;
+        cout<<"Type \"records\" to show the records of the games"<<endl;
+        string input;
+        cin>>input;
         if(input == "new"){
             
-            new_game() 
+            play_game() 
             /*1.This function is a void function. 
               
               2.It first ask user to input a difficulty level.Then a new game is randomly generated accordingly(maybe use 2D array)
@@ -36,19 +35,64 @@ int main()
             */
 
         }
-        else if(input == "load"){
-
-            load_game()
-            /* This function is a void function it loads the game saved before for user to play and directly jump to step 3 in new_game().*/
-        }
 
         else if(input == "record"){
 
             record()
             /* This function is a void function it opens the file for records and print it on the screen. The information should be sorted properly*/
         }
+        else if(input == "exit"){
+            break;
+        }
+        else{
+            cout<<"Please enter a valid input"<<endl;
+            cin>>input;
+        }
 
     }
-
     return 0;
+}
+
+
+void play_game(){
+    string input2;
+    cin>>input2;      
+        if(input2 == "new"){
+            
+            generate_game()
+            /* This function generate a new game for user.*/
+
+        }
+        else if(input2 == "load"){
+
+            load_game()
+            /* This function take the file saved before for user to play*/
+        }
+
+        
+
+    string input3;
+    cin>>input3;
+    while (input3 !="quit"){   
+        if(input3 == "add"){
+
+            add(row,column,number)//user fill in a number
+
+            check()//check whether the game is complete. If yes, quit and stop the timer. Add the time record to the file.
+            
+        }
+        else if(input3 == "remove") {
+
+            remove(row,column)//remove a number
+
+        }
+        else if(input3 == "save"){
+
+            save()//save the game to a file
+        }
+        else {
+            cout<<"Please enter a valid input"<<endl;
+            cin>>input3; 
+        }
+    }
 }
