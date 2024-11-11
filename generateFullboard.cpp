@@ -33,24 +33,33 @@ bool checkvalid(int number, int row, int col){
 //Randomly generate a sudoku board filled with numbers
 bool generateboard(int numberboard[][9], int row, int col){
     int number;
+    //Check whether all rows are filled
     if (row == 8 && col == 9){
         return true;
     }
+    //Check whether all columns are filled in this row
     if (col == 9){
         row += 1;
         col = 0;
     }
+    
+    //Check whether this place is filled
     if (numberboard[row][col] != 0){
         return generateboard(numberboard, row, col+1);
     }
 
+    //Generating for a whole row
     for (int i = 1; i < 10; i++){
+        //Randomly choose a value
         number = rand() % 9 + 1;
+        //check if the value fits the rule
         if (checkvalid(number, row, col)){
             numberboard[row][col] = number;
+            //Check whether next value can be chosen
             if (generateboard(numberboard, row, col+1)){
                 return true;
             }
+            //Generate again if the chosen value cannot work
             numberboard[row][col] = 0;
         }
     }
