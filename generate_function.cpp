@@ -1,4 +1,4 @@
- public static int[][] generateFunction(int level) {
+public static int[][] generateFunction(int level) {
     int[][] sudoku = new int[9][9];
     int[][] answer = new int[9][9];
     int resultNum = 0;
@@ -12,7 +12,7 @@
     if (level == 1) {
         removeElements(sudoku, 20);
     } else if (level == 2) {
-        removeElements(sudoku, 40);
+        removeElements(sudoku, 35);
     }
 
     // 解决数独
@@ -83,6 +83,8 @@ private static void analyse(int[][] data) {
                 }
 
                 data[i][j] = ~(rowMask | colMask | subGridMask) & 0x1FF;
+            } else {
+                data[i][j] = 1 << (data[i][j] - 1);
             }
         }
     }
@@ -123,4 +125,27 @@ private static int[] findLessCandidatesPos(int[][] data) {
         }
     }
     return position;
+}
+
+private static void printByRow(int[][] data) {
+    for (int i = 0; i < 9; i++) {
+        for (int j = 0; j < 9; j++) {
+            if (data[i][j] == 0) {
+                System.out.print(". ");
+            } else {
+                System.out.print(data[i][j] + " ");
+            }
+        }
+        System.out.println();
+    }
+}
+
+private static void binaryToInt(int[][] data) {
+    for (int i = 0; i < 9; i++) {
+        for (int j = 0; j < 9; j++) {
+            if (data[i][j] != 0) {
+                data[i][j] = (int) (Math.log(data[i][j]) / Math.log(2)) + 1;
+            }
+        }
+    }
 }
