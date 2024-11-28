@@ -48,7 +48,6 @@ int main()
         }
         else{
             cout<<"Please enter a valid input"<<endl;
-            cin>>input;
         }
 
     }
