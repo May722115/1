@@ -23,6 +23,23 @@ void display_board() {
     }
 }
 
+//load game function: strart the game
+void load_game() {
+    ifstream file(filename);
+    if (file.is_open()) {
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                file >> board[i][j]; // Read the number into the board
+            }
+        }
+        file.close();
+        cout << "Suscessfully loaded" << endl;
+        display_board(); 
+    } else {
+        cout << "This file is unable to open qAq" << endl;
+    }
+}
+
 //add a number to the board
 void add(int row, int column, int number) {
     if (row < 0 || row >= 9|| column < 0 || column >= 9) {  //invalid position
