@@ -76,21 +76,27 @@ void play_game(){
 
     string input3;
     cin>>input3;
-    while (input3 !="quit"){   
+    while (input3 !="quit"){  
+        // add a number to the board, check whether it is correct
         if(input3 == "add"){
-
-            add(row,column,number)//user fill in a number
+            int row, column, number;
+            cout << "Enter row(A-I), column(1-9), number(1-9): "<<endl;
+            cin >> row>> column>> number;
+            add(row -'A',column -1,number)//user fill in a number
 
             check()//check whether the game is complete. If yes, quit and stop the timer. Add the time record to the file(use another function).
             
         }
+        // remove a number from the board
         else if(input3 == "remove") {
-
-            remove(row,column)//remove a number
+            int row, column;
+            cout << "Enter row(A-I), column(1-9): "<<endl;
+            cin >> row>> column;          
+            remove(row - 'A',column -1)//remove a number
 
         }
+        // save the board
         else if(input3 == "save"){
-
             save()//save the game to a file
         }
         else {
