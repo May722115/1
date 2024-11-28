@@ -26,6 +26,32 @@ public static int[][] generateFunction(int level) {
     // 返回最终结果
     return answer;
 }
+private static void removeElements(int[][] sudoku, int count) {
+    Random random = new Random();
+    int removedCount = 0;
+
+    while (removedCount < count) {
+        int row = random.nextInt(9);
+        int col = random.nextInt(9);
+
+        if (sudoku[row][col] != 0) {
+            int temp = sudoku[row][col];
+            sudoku[row][col] = 0;
+
+            // 检查数独是否仍然有唯一解
+            int[][] tempSudoku = copyArray(sudoku); // 假设有一个复制数组的方法 copyArray
+            resultNum = 0;
+            solve(tempSudoku); // 假设 solve 方法用于解决数独并更新 resultNum
+
+            // 如果有多个解，则恢复该数字
+            if (resultNum > 1) {
+                sudoku[row][col] = temp;
+            } else {
+                removedCount++;
+            }
+        }
+    }
+}
 
 private static void solve(int[][] data) {
     if (resultNum > 1) {
