@@ -7,6 +7,10 @@
 
 using namespace std;
 
+//declare and initialize board and numberborad for storing
+vector<string> board;
+int numberboard[9][9] = {0};
+
 //Check for validity of value generated at each position
 bool checkvalid(int numberboard[][9], int number, int row, int col) {
     //check for columns
@@ -178,25 +182,27 @@ void formatting(vector<string> &board, int numberboard[][9]){
 
 //store generated full board as reference for answer checking
 void storeanswer(int numberboard[][9]){
+    //create an external file for storage
     ofstream fout("answer.txt");
+    //cout if fail to open
     if (fout.fail()){
         cout << "Error, try again." << endl;
         exit(1);
     }
+    //store the answer to external file
     for (int j = 0; j < 9; j++){
         for (int k = 0; k < 9; k++){
             fout << numberboard[j][k];
         }
         fout << endl;
     }
+    //close file
     fout.close();
 }
 
 int main() {
+    //make it random every time 
     srand(time(0));
-
-    vector<string> board;
-    int numberboard[9][9] = {0};
 
     formgameboard(board);
     generateboard(numberboard, 0, 0);
