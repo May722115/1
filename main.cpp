@@ -1,20 +1,26 @@
 #include <iostream>
 #include <string>
-
+#include <cstring>
+#include <cstdlib>
+#include <ctime>
+#include <vector>
+#include "generate_hard.h"
 using namespace std;
 
 int main()
-{
+{   int sudoku[9][9]={0};
+    int sudoku_copy[9][9]={0};
+    vector<string> board;
     
     while(true){
+        srand(time(0));
         cout<<"Type \"play\" to start a playing a game"<<endl;
         cout<<"Type \"exit\" to exit the programm"<<endl;
         cout<<"Type \"records\" to show the records of the games"<<endl;
         string input;
         cin>>input;
         if(input == "play"){
-            
-            play_game() 
+            play_game(sudoku, sudoku_copy) 
             /*1.This function is a void function. 
               
               2.It first ask user to choose start a new game to load previous one.
@@ -55,17 +61,46 @@ int main()
 }
 
 
-void play_game(){
+void play_game(int sudoku[][9],int sudoku_copy[][9]){
     string input2;
     cin>>input2;      
-        if(input2 == "new"){
-            string level;
+    while(input2!="new" || input2!="load"){
+        cout<<"Please enter \"new\" or \"load\"."<<endl;
+        cin>>input2;
+    }    
+    if(input2 == "new"){
+            int level;
+            cout<<"Please enter number 1-3 to choose difficulty level";
             cin>>level;
-            generate_game(level)
-            /* This function generate a new game for user depending on level chosed.*/
+            while(level!=1 || level!=2 || level!=3){
+                cout<<"please enter a valid input"<<endl;
+                cin>>level;
+            }
+            formgameboard(board);
+            generateboard(sudoku, 0, 0);
+            std::memcpy(sudoku_copy, sudoku, sizeof(sudoku));
+            storeanswer(sudoku);
+            if(level==1){
+                removeElements(sudoku, sudoku_copy, 20, 1); 
+
+            }
+            else if(level==2){
+                removeElements(sudoku, sudoku_copy, 35, 2);
+            }
+            else{
+            removehard(sudoku);
+            }
+            
+            formatting(board, sudoku);
+
+        for (string &line : board) {
+        cout << line << endl;
+        }
+
+            
 
         }
-        else if(input2 == "load"){
+    else if(input2 == "load"){
 
             load_game()
             /* This function take the file saved before for user to play*/
@@ -84,6 +119,7 @@ void play_game(){
             add(row -'A',column -1,number)//user fill in a number
 
             check()//check whether the game is complete. If yes, quit and stop the timer. Add the time record to the file(use another function).
+            cin>>input3;
             
         }
         // remove a number from the board
@@ -92,6 +128,7 @@ void play_game(){
             cout << "Enter row(A-I), column(1-9): "<<endl;
             cin >> row>> column;          
             remove(row - 'A',column -1)//remove a number
+            cin>>input3;
 
         }
         // save the board
