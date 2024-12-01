@@ -21,7 +21,7 @@ int main()
         string input;
         cin>>input;
         if(input == "play"){
-            play_game(sudoku, sudoku_copy) 
+            play_game(sudoku, sudoku_copy, board) 
             /*1.This function is a void function. 
               
               2.It first ask user to choose start a new game to load previous one.
@@ -62,7 +62,7 @@ int main()
 }
 
 
-void play_game(int sudoku[][9],int sudoku_copy[][9]){
+void play_game(int sudoku[][9],int sudoku_copy[][9], vector<string> board){
     string input2;
     cin>>input2;      
     while(input2!="new" || input2!="load"){
