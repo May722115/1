@@ -5,6 +5,7 @@
 #include <ctime>
 #include <vector>
 #include "generate_hard.h"
+#include "generate_function.h"
 using namespace std;
 
 int main()
