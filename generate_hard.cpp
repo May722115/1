@@ -4,6 +4,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <string>
+#include "generate_hard.h"
 
 using namespace std;
 
