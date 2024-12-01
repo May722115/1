@@ -6,6 +6,7 @@
 #include <cstring>
 #include <ctime>
 #include <bitset>
+#include "generate_function.h"
 
 int resultNum = 0;
 int answer[9][9] = {0};
