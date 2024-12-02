@@ -61,7 +61,7 @@ int main()
     return 0;
 }
 
-void load_game(int sudoku [][9], int sudoku_copy[][9], vector<string>, &board) {
+void load_game(int sudoku [][9], int sudoku_copy[][9], vector<string> &board) {
     ifstream file("board.txt");
     if (!file) {
         cout << "No saved game found. Please start a new game." << endl;
@@ -72,7 +72,7 @@ void load_game(int sudoku [][9], int sudoku_copy[][9], vector<string>, &board) {
     int row = 0;
     while (getline(file, line) && row < 9) {
         for (int col = 0; col < 9 && col < line.length(); ++col) {
-            if (is (isdigit(line[col])) {
+            if (isdigit(line[col])) {
                 sudoku[row][col] = line[col] - '0';
             } else {
                 sudoku[row][col] = 0;
