@@ -61,6 +61,63 @@ int main()
     return 0;
 }
 
+void load_game(int sudoku [][9], int sudoku_copy[][9], vector<string>, &board) {
+    ifstream file("board.txt");
+    if (!file) {
+        cout << "No saved game found. Please start a new game." << endl;
+        return;
+    }
+
+    string line;
+    int row = 0;
+    while (getline(file, line) && row < 9) {
+        for (int col = 0; col < 9 && col < line.length(); ++col) {
+            if (is (isdigit(line[col])) {
+                sudoku[row][col] = line[col] - '0';
+            } else {
+                sudoku[row][col] = 0;
+            }
+        }
+        ++row;
+    }
+    file.close();
+
+    std::memcpy(sudoku_copy, sudoku, sizeof(int) * 9 * 9);
+    formatting(board, sudoku);
+    cout << "Loaded Game Board:" << endl;
+    for (string &line : board) {
+        cout << line << endl;
+    }
+}
+
+void save(const int sudoku[][9], int elapsedTime) {
+    ofstream file("board.txt");
+    if (!file) {
+        cout << "Failed to save the game." << endl;
+        return;
+    }
+
+    for (int row = 0; row < 9; ++row) {
+        for (int col = 0; col < 9; ++col) {
+            if (sudoku[row][col] == 0) {
+                file << ".";
+            } else {
+                file << sudoku[row][col];
+            }
+        }
+        file << endl;
+    }
+    file.close();
+
+    ofstream recordFile("records.txt", ios::app);
+    if (!recordFile) {
+        cout << "Failed to save time record." << endl;
+        return;
+    }
+    recordFile << "Time: " << elapsedTime << " seconds" << endl;
+    recordFile.close();
+    cout << "Game and record saved successfully!" << endl;
+}
 
 void play_game(int sudoku[][9],int sudoku_copy[][9], vector<string> board){
     string input2;
@@ -104,6 +161,7 @@ void play_game(int sudoku[][9],int sudoku_copy[][9], vector<string> board){
     else if(input2 == "load"){
 
             load_game()
+                    
             /* This function take the file saved before for user to play*/
         }
 
