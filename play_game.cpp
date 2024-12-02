@@ -6,7 +6,9 @@
 using namespace std;
 
 vector<vector<int>> board(9, vector<int>(9, 0)); 
+vector<vector<int>> sudoku(9, vector<int>(9, 0)); 
 string filename = "game_save.txt"; 
+string answer_file = "answer.txt";
 
 //display the board for playing
 void display_board() {
@@ -29,10 +31,11 @@ void load_game() {
     if (file.is_open()) {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < SIZE; j++) {
-                file >> board[i][j]; // Read the number into the board
+                file >> sukudo[i][j]; // Read the number into the board
             }
         }
         file.close();
+        formatting (board, sudoku);
         cout << "Suscessfully loaded" << endl;
         display_board(); 
     } else {
@@ -46,7 +49,7 @@ void add(int row, int column, int number) {
         cout << "This position is invalid!" << endl;
         return;
     }
-    if (board[row][column] != 0) { //filled position
+    if (sudoku[row][column] != 0) { //filled position
         cout << "This position already filled!" << endl;
         return;
     }
@@ -55,6 +58,7 @@ void add(int row, int column, int number) {
         return;
       
     board[row][column] = number; //normal input
+    formatting(board, sukudo);
     display_board();
 }
 
@@ -64,7 +68,8 @@ void remove(int row, int column) {
         cout << "This position is invalid!" << endl;
         return;
     }
-    board[row][column] = 0; 
+    sukudo[row][column] = 0; 
+    formatting(board, sukudo);
     display_board();
 }
 
@@ -74,7 +79,7 @@ void save() {
     if (file.is_open()) { //save board to file
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
-                file << board[i][j] << " ";
+                file << sudoku[i][j] << " ";
             }
             file << endl;
         }
@@ -84,3 +89,29 @@ void save() {
         cout << "Unable to open file for saving." << endl;
     }
 }
+
+// Check if the game is complete
+void check_completion() {
+    ifstream file(answer_file);
+    if (!file.is_open()) {
+        cout << "Unable to open answer file." << endl;
+        return;
+    }
+
+    vector<vector<int>> answer(9, vector<int>(9, 0));
+    for (int i = 0; i < 9; i++) {
+        for (int j = 0; j < 9; j++) {
+            file >> answer[i][j]; // Read the correct answer
+        }
+    }
+    file.close();
+
+    bool complete = true;
+    for (int i = 0; i < 9 && complete; i++) {
+        for (int j = 0; j < 9; j++) {
+            if (sudoku[i][j] != answer[i][j]) {
+                complete = false;
+                break;
+            }
+        }
+    }
