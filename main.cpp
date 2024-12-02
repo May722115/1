@@ -1,4 +1,7 @@
 #include <iostream>
+#include <algorithm>
+#include <sstream>
+#include <fstream>
 #include <string>
 #include <cstring>
 #include <cstdlib>
@@ -7,6 +10,58 @@
 #include "generate_hard.h"
 #include "generate_function.h"
 using namespace std;
+
+struct Record {
+    string level;
+    double time;
+};
+
+struct Record {
+    string level;
+    double time;
+};
+
+void record(const string &newLevel, double newTime) {
+    ifstream file("records.txt");
+    vector<Record> records;
+
+    // Read existing records
+    if (file.is_open()) {
+        string line;
+        while (getline(file, line)) {
+            istringstream iss(line);
+            Record rec;
+            iss >> rec.level >> rec.time;
+            records.push_back(rec);
+        }
+        file.close();
+    }
+
+    // Adding new record
+    records.push_back({newLevel, newTime});
+
+
+    sort(records.begin(), records.end(), [](const Record &a, const Record &b) {
+        return a.time < b.time;
+    });
+    
+    ofstream outfile("records.txt");
+    if (outfile.is_open()) {
+        for (const auto &rec : records) {
+            outfile << rec.level << " " << rec.time << endl;
+        }
+        outfile.close();
+    } else {
+        cerr << "Error: Unable to open records.txt for writing." << endl;
+    }
+
+    // updated records
+    cout << "---- Game Records ----" << endl;
+    for (const auto &rec : records) {
+        cout << "Level: " << rec.level << ", Time: " << rec.time << " seconds" << endl;
+    }
+    cout << "----------------------" << endl;
+}
 
 int main()
 {   int sudoku[9][9]={0};
