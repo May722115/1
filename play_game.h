@@ -20,6 +20,6 @@ void add(int row, int column, int number);
 void remove(int row, int column); 
 void save(); 
 bool check_completion(); 
-void formatting(vector<vector<int>>& board, const vector<vector<int>>& sudoku); 
+void formatting(vector<string>& board, const vector<vector<int>>& sudoku); 
 
 #endif 
