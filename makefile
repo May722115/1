@@ -4,7 +4,7 @@ generate_hard.o: generate_hard.cpp generate_hard.h
 generate_function.o: generate_function.cpp generate_function.h 
     g++ -c generate_function.cpp
 
-play_game.o: play_game.cpp play_game.h 
+play_game.o: play_game.cpp play_game.h generate_hard.h
     g++ -c play_game.cpp
 
 main.o: main.cpp generate_hard.h generate_function.h play_game.h 
