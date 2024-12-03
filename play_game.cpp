@@ -3,6 +3,7 @@
 #include <vector>
 #include <fstream>
 #include "play_game.h"
+#include "generate_hard.h"
 using namespace std;
 
 vector<string> board(9); 
