@@ -16,7 +16,7 @@
 using namespace std;
 
 struct Record {
-    string level;
+    int level;
     double time;
 };
 
@@ -26,7 +26,7 @@ bool fileExists(const string &filename) {
 }
 
 void showrecords() {
-    ifstream.file("records.txt");
+    ifstream file("records.txt");
     if (!file) {
     cout << "No records found" << endl;
     return;
