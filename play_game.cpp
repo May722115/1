@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <fstream>
+#include "play_game.h"
 using namespace std;
 
 vector<vector<int>> board(9, vector<int>(9, 0)); 
