@@ -15,7 +15,7 @@ void load_game() {
     if (file.is_open()) {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < SIZE; j++) {
-                file >> sukudo[i][j]; // Read the number into the board
+                file >> sudoku[i][j]; // Read the number into the board
             }
         }
         file.close();
@@ -56,8 +56,8 @@ void remove(int row, int column) {
         cout << "This position is invalid!" << endl;
         return;
     }
-    sukudo[row][column] = 0; 
-    formatting(board, sukudo);
+    sudoku[row][column] = 0; 
+    formatting(board, sudoku);
     for (string &line : board){
         cout<< line<< endl;
     }
