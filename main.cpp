@@ -177,7 +177,7 @@ void play_game(int sudoku[][9],int sudoku_copy[][9], vector<string> board){
         }
     else if(input2 == "load"){
 
-            load_game();
+            load_game(sudoku, board);
                     
             /* This function take the file saved before for user to play*/
         }
@@ -193,7 +193,7 @@ void play_game(int sudoku[][9],int sudoku_copy[][9], vector<string> board){
             int row, column, number;
             cout << "Enter row(A-I), column(1-9), number(1-9): "<<endl;
             cin >> row>> column>> number;
-            add(row -'A',column -1,number);//user fill in a number
+            add(row -'A',column -1,number, sudoku, board);//user fill in a number
 
             if(check()){
                 cout<<"Congradulation! You get the corrent answer!"<<endl;
@@ -211,13 +211,13 @@ void play_game(int sudoku[][9],int sudoku_copy[][9], vector<string> board){
             int row, column;
             cout << "Enter row(A-I), column(1-9): "<<endl;
             cin >> row>> column;          
-            remove(row - 'A',column -1);//remove a number
+            remove(row - 'A',column -1, sudoku, board);//remove a number
             cin>>input3;
 
         }
         // save the board
         else if(input3 == "save"){
-            save();//save the game to a file
+            save(sudoku);//save the game to a file
         }
         else {
             cout<<"Please enter a valid input"<<endl;
