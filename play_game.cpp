@@ -11,7 +11,8 @@ string filename = "game_save.txt";
 string answer_file = "answer.txt";
 
 //load game function: strart the game
-void load_game() {
+void load_game(int sudoku[][9], vector<string> &board) {
+    string filename = "game_save.txt";
     ifstream file(filename);
     if (file.is_open()) {
         for (int i = 0; i < 9; i++) {
@@ -31,7 +32,7 @@ void load_game() {
 }
 
 //add a number to the board
-void add(int row, int column, int number) {
+void add(int row, int column, int number, int sudoku[][9], vector<string> &board) {
     if (row < 0 || row >= 9|| column < 0 || column >= 9) {  //invalid position
         cout << "This position is invalid!" << endl;
         return;
@@ -52,7 +53,7 @@ void add(int row, int column, int number) {
 }
 
 //remove a number from the board
-void remove(int row, int column) {
+void remove(int row, int column, int sudoku[][9], vector<string> &board) {
     if (row < 0 || row >= 9 || column < 0 || column >= 9) { //invalid position
         cout << "This position is invalid!" << endl;
         return;
@@ -65,7 +66,8 @@ void remove(int row, int column) {
 }
 
 //save the baord
-void save() {
+void save(int sudoku[][9]) {
+    string filename = "game_save.txt";
     ofstream file(filename);
     if (file.is_open()) { //save board to file
         for (int i = 0; i < 9; i++) {
@@ -82,7 +84,8 @@ void save() {
 }
 
 // Check if the game is complete
-bool check_completion() {
+bool check_completion(int sudoku[][9]) {
+    string answer_file = "answer.txt";
     ifstream file(answer_file);
     if (!file.is_open()) {
         cout << "Unable to open answer file." << endl;
