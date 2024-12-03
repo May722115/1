@@ -5,7 +5,7 @@
 #include "play_game.h"
 using namespace std;
 
-vector<vector<int>> board(9, vector<int>(9, 0)); 
+vector<string> board(9); 
 vector<vector<int>> sudoku(9, vector<int>(9, 0)); 
 string filename = "game_save.txt"; 
 string answer_file = "answer.txt";
@@ -15,8 +15,8 @@ void load_game() {
     ifstream file(filename);
     if (file.is_open()) {
         for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < SIZE; j++) {
-                file >> sudoku[i][j]; // Read the number into the board
+            for (int j = 0; j < 9; j++) {
+                file >> sudoku[i][j]; 
             }
         }
         file.close();
