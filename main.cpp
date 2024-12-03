@@ -202,7 +202,7 @@ void play_game(int sudoku[][9],int sudoku_copy[][9], vector<string> board){
                 chrono::duration<double> duration = end - start;
                 record(level, duration.count());
                 
-                break
+                break;
             }//check whether the game is complete. If yes, quit and stop the timer. Add the time record to the file(use another function).
             cin>>input3;
             
