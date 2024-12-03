@@ -141,7 +141,7 @@ void play_game(int sudoku[][9],int sudoku_copy[][9], vector<string> board){
         cout<<"Please enter \"new\" or \"load\"."<<endl;
         cin>>input2;
     }    
-    start = std::chrono::high_resolution_clock::now();
+    auto start = std::chrono::high_resolution_clock::now();
     if(input2 == "new"){
             const char* filename1 = "answer.txt";
             const char* filename2 = "save_game.txt";
