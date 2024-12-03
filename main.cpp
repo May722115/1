@@ -81,8 +81,6 @@ int main(){
     int sudoku[9][9]={0};
     int sudoku_copy[9][9]={0};
     vector<string> board;
-    auto start;
-    auto end;
     
     while(true){
         srand(time(0));
@@ -182,6 +180,7 @@ void play_game(int sudoku[][9],int sudoku_copy[][9], vector<string> board){
     //following part starts when a game is prepared and user begins to play.    
 
     string input3;
+    auto start = std::chrono::high_resolution_clock::now();
     cin>>input3;
     while (input3 !="quit"){  
         // add a number to the board, check whether it is correct
@@ -193,7 +192,7 @@ void play_game(int sudoku[][9],int sudoku_copy[][9], vector<string> board){
 
             if(check()){
                 cout<<"Congradulation! You get the corrent answer!"<<endl;
-                end = std::chrono::high_resolution_clock::now();
+                auto end = std::chrono::high_resolution_clock::now();
                 chrono::duration<double> duration = end - start;
                 record(level, duration.count());
                 
