@@ -8,11 +8,6 @@
 
 using namespace std;
 
-// Global variables
-extern vector<vector<int>> board; 
-extern vector<vector<int>> sudoku; 
-extern string filename; 
-extern string answer_file; 
 
 // Function prototypes
 void load_game(int sudoku[][9], vector<string> &board); 
