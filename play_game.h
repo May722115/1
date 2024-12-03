@@ -18,7 +18,7 @@ void load_game();
 void add(int row, int column, int number);
 void remove(int row, int column);
 void save();
-void check_completion();
+bool check_completion();
 void formatting();
 
 #endif
