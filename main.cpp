@@ -134,6 +134,7 @@ int main(){
 }
 
 void play_game(int sudoku[][9],int sudoku_copy[][9], vector<string> board){
+    int size[0][0] = {0};
     string input2;
     int level;
     cin>>input2;      
@@ -155,7 +156,7 @@ void play_game(int sudoku[][9],int sudoku_copy[][9], vector<string> board){
             }
             formgameboard(board);
             generateboard(sudoku, 0, 0);
-            std::memcpy(sudoku_copy, sudoku, sizeof(sudoku));
+            std::memcpy(sudoku_copy, sudoku, sizeof(size));
             storeanswer(sudoku);
             if(level==1){
                 removeElements(sudoku, sudoku_copy, 20, 1); 
