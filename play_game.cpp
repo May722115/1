@@ -91,11 +91,11 @@ void save() {
 }
 
 // Check if the game is complete
-void check_completion() {
+bool check_completion() {
     ifstream file(answer_file);
     if (!file.is_open()) {
         cout << "Unable to open answer file." << endl;
-        return;
+        return false;
     }
 
     vector<vector<int>> answer(9, vector<int>(9, 0));
@@ -106,12 +106,12 @@ void check_completion() {
     }
     file.close();
 
-    bool complete = true;
-    for (int i = 0; i < 9 && complete; i++) {
+    for (int i = 0; i < 9; i++) {
         for (int j = 0; j < 9; j++) {
             if (sudoku[i][j] != answer[i][j]) {
-                complete = false;
-                break;
+                return false;
             }
         }
     }
+    return true;
+}
