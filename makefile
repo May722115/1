@@ -12,3 +12,6 @@ main.o: main.cpp generate_hard.h generate_function.h play_game.h
 
 main: generate_hard.o generate_function.o play_game.o main.o
     g++ generate_hard.o generate_function.o play_game.o main.o -o main
+
+clean:
+    rm -f main main.o play_game.o generate_function.o generate_hard.o
