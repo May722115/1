@@ -6,6 +6,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <ctime>
+#include <chrono>
 #include <vector>
 #include <sys/stat.h>
 #include "generate_hard.h"
@@ -62,10 +63,12 @@ void record(const string &level, double time) {
     cout << "----------------------" << endl;
 }
 
-int main()
-{   int sudoku[9][9]={0};
+int main(){   
+    int sudoku[9][9]={0};
     int sudoku_copy[9][9]={0};
     vector<string> board;
+    auto start;
+    auto end;
     
     while(true){
         srand(time(0));
@@ -117,13 +120,14 @@ int main()
 
 void play_game(int sudoku[][9],int sudoku_copy[][9], vector<string> board){
     string input2;
+    int level;
     cin>>input2;      
     while(input2!="new" || input2!="load"){
         cout<<"Please enter \"new\" or \"load\"."<<endl;
         cin>>input2;
     }    
+    start = std::chrono::high_resolution_clock::now();
     if(input2 == "new"){
-            int level;
             cout<<"Please enter number 1-3 to choose difficulty level";
             cin>>level;
             while(level!=1 || level!=2 || level!=3){
@@ -173,7 +177,14 @@ void play_game(int sudoku[][9],int sudoku_copy[][9], vector<string> board){
             cin >> row>> column>> number;
             add(row -'A',column -1,number)//user fill in a number
 
-            check()//check whether the game is complete. If yes, quit and stop the timer. Add the time record to the file(use another function).
+            if(check()){
+                cout<<"Congradulation! You get the corrent answer!"<<endl;
+                end = std::chrono::high_resolution_clock::now();
+                chrono::duration<double> duration = end - start;
+                record(level, duration.count());
+                
+                break
+            }//check whether the game is complete. If yes, quit and stop the timer. Add the time record to the file(use another function).
             cin>>input3;
             
         }
