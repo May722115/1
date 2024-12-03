@@ -18,6 +18,7 @@ using namespace std;
 struct Record {
     int level;
     double time;
+    Record(int lvl, double t) : level(lvl), time(t) {}
 };
 
 bool fileExists(const string &filename) {
@@ -39,7 +40,7 @@ void showrecords() {
     file.close();
 }
 
-void record(const string &level, double time) {
+void record(const int &level, double time) {
     vector<Record> records;
 
     // Check if there is a current record, and if none, create record
@@ -58,7 +59,8 @@ void record(const string &level, double time) {
     }
 
     // Adding new record
-    records.push_back({level, time});
+    records.push_back(Record(level, time));
+    
 
     // Sorting by time
     sort(records.begin(), records.end(), [](const Record &a, const Record &b) {
@@ -66,8 +68,11 @@ void record(const string &level, double time) {
     });
 
     ofstream outfile("record.txt");
-    for (const auto &rec : records) {
-        outfile << rec.level << " " << rec.time << endl;
+    if (outfile.is_open()) {
+        for (const auto &rec : records) {
+            outfile << rec.level << " " << rec.time << endl;
+        }
+        outfile.close();
     }
 
     // Display updated records
@@ -77,6 +82,7 @@ void record(const string &level, double time) {
     }
     cout << "----------------------" << endl;
 }
+
 
 void play_game(int sudoku[][9],int sudoku_copy[][9], vector<string> board);
 
