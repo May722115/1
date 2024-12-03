@@ -24,6 +24,20 @@ bool fileExists(const string &filename) {
     return (stat(filename.c_str(), &buffer) == 0);
 }
 
+void showrecords() {
+    ifstream.file("records.txt");
+    if (!file) {
+    cout << "No records found" << endl;
+    return;
+}
+    string line;
+    cout << "Game Records:" << endl;
+    while (getline(file, line)) { 
+        cout << line << endl; 
+    }
+    file.close();
+}
+
 void record(const string &level, double time) {
     vector<Record> records;
 
