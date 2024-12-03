@@ -78,6 +78,8 @@ void record(const string &level, double time) {
     cout << "----------------------" << endl;
 }
 
+void play_game(int sudoku[][9],int sudoku_copy[][9], vector<string> board);
+
 int main(){   
     int sudoku[9][9]={0};
     int sudoku_copy[9][9]={0};
@@ -142,7 +144,7 @@ void play_game(int sudoku[][9],int sudoku_copy[][9], vector<string> board){
     start = std::chrono::high_resolution_clock::now();
     if(input2 == "new"){
             const char* filename1 = "answer.txt";
-            const cahr* filename2 = "save.txt";
+            const char* filename2 = "save.txt";
             remove(filename1);
             remove(filename2);
             cout<<"Please enter number 1-3 to choose difficulty level";
@@ -211,7 +213,7 @@ void play_game(int sudoku[][9],int sudoku_copy[][9], vector<string> board){
             int row, column;
             cout << "Enter row(A-I), column(1-9): "<<endl;
             cin >> row>> column;          
-            remove(row - 'A',column -1, sudoku, board);//remove a number
+            removing(row - 'A',column -1, sudoku, board);//remove a number
             cin>>input3;
 
         }
