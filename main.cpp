@@ -19,6 +19,7 @@ struct Record {
     int level;
     double time;
     Record(int lvl, double t) : level(lvl), time(t) {}
+    Record() = default;
 };
 
 bool fileExists(const string &filename) {
