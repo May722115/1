@@ -15,11 +15,11 @@ extern string filename;
 extern string answer_file; 
 
 // Function prototypes
-void load_game(); 
-void add(int row, int column, int number); 
-void remove(int row, int column); 
-void save(); 
-bool check_completion(); 
+void load_game(int sudoku[][9], vector<string> &board); 
+void add(int row, int column, int number, int sudoku[][9], vector<string> &board); 
+void remove(int row, int column,int sudoku[][9], vector<string> &board)); 
+void save(int sudoku[][9]); 
+bool check_completion(int sudoku[][9]); 
 void formatting(vector<string>& board, const vector<vector<int>>& sudoku); 
 
 #endif 
