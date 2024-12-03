@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include <ctime>
 #include <fstream>
 using namespace std;
 
@@ -9,21 +8,6 @@ vector<vector<int>> board(9, vector<int>(9, 0));
 vector<vector<int>> sudoku(9, vector<int>(9, 0)); 
 string filename = "game_save.txt"; 
 string answer_file = "answer.txt";
-
-//display the board for playing
-void display_board() {
-    cout << "   1 2 3   4 5 6   7 8 9" << endl;
-    cout << " +-------+-------+-------+" << endl;
-    for (int i = 0; i < 9; i++) { //row
-        cout << char('A' + i) << "| "; 
-        for (int j = 0; j < 9; j++) { //column
-            cout << (board[i][j] == 0 ? '.' : to_string(board[i][j])) << " ";
-            if ((j + 1) % 3 == 0) cout << "| ";
-        }
-        cout << endl;
-        if ((i + 1) % 3 == 0) cout << " +-------+-------+-------+" << endl;
-    }
-}
 
 //load game function: strart the game
 void load_game() {
@@ -37,7 +21,9 @@ void load_game() {
         file.close();
         formatting (board, sudoku);
         cout << "Suscessfully loaded" << endl;
-        display_board(); 
+        for (string &line : board){
+            cout<< line<< endl;
+        }
     } else {
         cout << "This file is unable to open qAq" << endl;
     }
@@ -57,9 +43,11 @@ void add(int row, int column, int number) {
         cout << "Your number is out of range!"<< endl;
         return;
       
-    board[row][column] = number; //normal input
-    formatting(board, sukudo);
-    display_board();
+    sudoku[row][column] = number; //normal input
+    formatting(board, sudoku);
+    for (string &line : board){
+        cout<< line<< endl;
+    }
 }
 
 //remove a number from the board
@@ -70,7 +58,9 @@ void remove(int row, int column) {
     }
     sukudo[row][column] = 0; 
     formatting(board, sukudo);
-    display_board();
+    for (string &line : board){
+        cout<< line<< endl;
+    }
 }
 
 //save the baord
