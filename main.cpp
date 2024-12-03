@@ -144,7 +144,7 @@ void play_game(int sudoku[][9],int sudoku_copy[][9], vector<string> board){
     start = std::chrono::high_resolution_clock::now();
     if(input2 == "new"){
             const char* filename1 = "answer.txt";
-            const char* filename2 = "save.txt";
+            const char* filename2 = "save_game.txt";
             remove(filename1);
             remove(filename2);
             cout<<"Please enter number 1-3 to choose difficulty level";
