@@ -10,6 +10,7 @@
 #include <sys/stat.h>
 #include "generate_hard.h"
 #include "generate_function.h"
+#include "play_game.h"
 using namespace std;
 
 struct Record {
