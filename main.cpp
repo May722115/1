@@ -140,7 +140,7 @@ int main(){
 }
 
 void play_game(int sudoku[][9],int sudoku_copy[][9], vector<string> board){
-    int size[0][0] = {0};
+    int size[9][9] = {0};
     string input2;
     int level;
     cin>>input2;      
