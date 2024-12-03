@@ -187,7 +187,6 @@ void play_game(int sudoku[][9],int sudoku_copy[][9], vector<string> board){
     //following part starts when a game is prepared and user begins to play.    
 
     string input3;
-    auto start = std::chrono::high_resolution_clock::now();
     cin>>input3;
     while (input3 !="quit"){  
         // add a number to the board, check whether it is correct
