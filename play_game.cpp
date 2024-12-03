@@ -54,7 +54,7 @@ void add(int row, int column, int number, int sudoku[][9], vector<string> &board
 }
 
 //remove a number from the board
-void remove(int row, int column, int sudoku[][9], vector<string> &board) {
+void removing(int row, int column, int sudoku[][9], vector<string> &board) {
     if (row < 0 || row >= 9 || column < 0 || column >= 9) { //invalid position
         cout << "This position is invalid!" << endl;
         return;
