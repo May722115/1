@@ -8,6 +8,7 @@
 #include <ctime>
 #include <chrono>
 #include <vector>
+#include <cstdio>
 #include <sys/stat.h>
 #include "generate_hard.h"
 #include "generate_function.h"
@@ -140,6 +141,9 @@ void play_game(int sudoku[][9],int sudoku_copy[][9], vector<string> board){
     }    
     start = std::chrono::high_resolution_clock::now();
     if(input2 == "new"){
+            const char* filename = "answer.txt";
+            const cahr* filename = ""
+            remove(filename);
             cout<<"Please enter number 1-3 to choose difficulty level";
             cin>>level;
             while(level!=1 || level!=2 || level!=3){
