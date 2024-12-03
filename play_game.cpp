@@ -6,10 +6,6 @@
 #include "generate_hard.h"
 using namespace std;
 
-vector<string> board(9); 
-vector<vector<int>> sudoku(9, vector<int>(9, 0)); 
-string filename = "game_save.txt"; 
-string answer_file = "answer.txt";
 
 //load game function: strart the game
 void load_game(int sudoku[][9], vector<string> &board) {
