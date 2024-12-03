@@ -48,6 +48,7 @@ void add(int row, int column, int number, int sudoku[][9], vector<string> &board
         cout<< line<< endl;
     }
 }
+}
 
 //remove a number from the board
 void removing(int row, int column, int sudoku[][9], vector<string> &board) {
