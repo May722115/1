@@ -146,7 +146,7 @@ void play_game(int sudoku[][9],int sudoku_copy[][9], vector<string> board){
     int level;
     cout<<"Enter \"new\" to start a new game. Enter \"load\" to load a saved game"<<endl;
     cin>>input2;      
-    while(input2!="new" || input2!="load"){
+    while(input2!="new" && input2!="load"){
         cout<<"Please enter \"new\" or \"load\"."<<endl;
         cin>>input2;
     }    
