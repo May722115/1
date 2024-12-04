@@ -215,11 +215,11 @@ void play_game(int sudoku[][9],int sudoku_copy[][9], vector<string> board){
                     auto end = std::chrono::high_resolution_clock::now();
                     chrono::duration<double> duration = end - start;
                     record(level, duration.count());
-                }
                 
-                    break;
-            }//check whether the game is complete. If yes, quit and stop the timer. Add the time record to the file(use another function).
-            cin>>input3;
+                
+                    break;}
+            //check whether the game is complete. If yes, quit and stop the timer. Add the time record to the file(use another function).
+            cin>>input3;}
             
             else{
                 cout<<"Your input is not valid. Choose add, remove, save, quit again!"<<endl;
