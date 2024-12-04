@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <string>
+#include <algorithm>
 using namespace std;
 
 //Check for validity of value generated at each position
@@ -30,37 +31,39 @@ bool checkvalid(int numberboard[][9], int number, int row, int col) {
     return true;
 }
 
-//generate full number board
 bool generateboard(int numberboard[][9], int row, int col) {
-    //check whether all rows are filled
+    // Check whether all rows are filled
     if (row == 8 && col == 9) {
         return true;
     }
 
-    //check whether all colunms in the row are filled
+    // Move to the next row if the current row is filled
     if (col == 9) {
         row++;
         col = 0;
     }
 
-    //check whether the position is filled
+    // Skip already filled positions
     if (numberboard[row][col] != 0) {
         return generateboard(numberboard, row, col + 1);
     }
 
-    //fill the number in a row
-    for (int i = 1; i <= 9; i++) {
-        //randomly generateing a number
-        int number = rand() % 9 + 1;
-        //check if the number if valid and fill it in the position
+    // Create and shuffle numbers 1 to 9
+    int numbers[9] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+    random_shuffle(numbers, numbers + 9);
+
+    // Try filling the position with shuffled numbers
+    for (int i = 0; i < 9; i++) {
+        int number = numbers[i]; // Get the next shuffled number
         if (checkvalid(numberboard, number, row, col)) {
             numberboard[row][col] = number;
-            //check whether next valid number exists, repeat previous step if not
             if (generateboard(numberboard, row, col + 1)) {
-                return true;
+                return true; // If board generation is successful, return true
             }
+            // Backtrack if placing the number leads to no solution
             numberboard[row][col] = 0;
         }
     }
-    return false;
+
+    return false; 
 }
