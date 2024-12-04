@@ -156,7 +156,7 @@ void play_game(int sudoku[][9],int sudoku_copy[][9], vector<string> board){
             const char* filename2 = "save_game.txt";
             remove(filename1);
             remove(filename2);
-            cout<<"Please enter number 1-3 to choose difficulty level";
+            cout<<"Please enter number 1-3 to choose difficulty level"<<endl;
             cin>>level;
             while(level!=1 && level!=2 && level!=3){
                 cout<<"please enter a valid input"<<endl;
