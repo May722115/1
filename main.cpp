@@ -210,7 +210,7 @@ void play_game(int sudoku[][9],int sudoku_copy[][9], vector<string> board){
             if(row>='A' && row<='I' && column>=1 && column<=9 && number>=1 && number<=9){
             add(row -'A',column -1,number, sudoku, board);//user fill in a number
 
-                if(check(sudoku)){
+                if(check_completion(sudoku)){
                     cout<<"Congradulation! You get the corrent answer!"<<endl;
                     auto end = std::chrono::high_resolution_clock::now();
                     chrono::duration<double> duration = end - start;
