@@ -32,3 +32,16 @@ Enter the command "records" to see the current scoreboard, if any. If there have
 #include "generate_hard.h"
 #include "generate_function.h"
 #include "play_game.h"
+
+**-- Coding Features --**
+1. Generation of random events
+   Random number generation is used for creating a complete game board randomly each time in function generateboard().
+2. Data structures for storing data
+   Int array is used to store the gameborad while vector<string> structure is used to store the gameboard with format shown in board.txt. 
+3. Dynamic memory management
+   
+4. File input/output (e.g., for loading/saving data)
+   The complete board generate in function generateboard() is outputed as file answer.txt in function storeanswer() for later reference.
+5. Program codes in multiple files
+   
+   
