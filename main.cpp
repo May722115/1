@@ -194,7 +194,10 @@ void play_game(int sudoku[][9],int sudoku_copy[][9], vector<string> board){
         }
 
     //following part starts when a game is prepared and user begins to play.    
-
+    cout<<"Enter \"add\" to fill in a number"<<endl;
+    cout<<"Enter \"remove\" to remove a number"<<endl;
+    cout<<"Enter \"save\" to same the current game. Note: it will cover the previously saved game."<<endl;
+    cout<<"Enter \"quit\" to quit the game"<<endl;
     string input3;
     cin>>input3;
     while (input3 !="quit"){  
