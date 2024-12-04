@@ -43,7 +43,10 @@ void add(int row, int column, int number, int sudoku[][9], vector<string> &board
         return;}
       
     sudoku[row][column] = number; //normal input
-    formatting(board, sudoku);
+    vector<string> newboard;
+    formgameboard(newboard);
+    formatting(newboard, sudoku);
+    board=newboard;
     for (string &line : board){
         cout<< line<< endl;
     }
@@ -56,7 +59,10 @@ void removing(int row, int column, int sudoku[][9], vector<string> &board) {
         return;
     }
     sudoku[row][column] = 0; 
-    formatting(board, sudoku);
+    vector<string> newboard;
+    formgameboard(newboard);
+    formatting(newboard, sudoku);
+    board=newboard;
     for (string &line : board){
         cout<< line<< endl;
     }
