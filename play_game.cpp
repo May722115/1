@@ -40,14 +40,13 @@ void add(int row, int column, int number, int sudoku[][9], vector<string> &board
     }
     if (number < 1|| number > 9){ //input out of range
         cout << "Your number is out of range!"<< endl;
-        return;
+        return;}
       
     sudoku[row][column] = number; //normal input
     formatting(board, sudoku);
     for (string &line : board){
         cout<< line<< endl;
     }
-}
 }
 
 //remove a number from the board
