@@ -220,10 +220,10 @@ void play_game(int sudoku[][9],int sudoku_copy[][9], vector<string> board){
                     break;
             }//check whether the game is complete. If yes, quit and stop the timer. Add the time record to the file(use another function).
             cin>>input3;
-            }
-        else{
-            cout<<"Your input is not valid. Choose add, remove, save, quit again!"
-            cin>>inpu3;
+            
+            else{
+                cout<<"Your input is not valid. Choose add, remove, save, quit again!"<<endl;
+                cin>>input3;
             }
             
         }
