@@ -233,7 +233,12 @@ void play_game(int sudoku[][9],int sudoku_copy[][9], vector<string> board){
             int column;
             cout << "Enter row(A-I), column(1-9): "<<endl;
             cin >> row>> column;          
-            removing(row - 'A',column -1, sudoku, board);//remove a number
+            if(row>='A' && row<='I' && column>=1 && column<=9){
+                removing(row - 'A',column -1, sudoku, board);//remove a number
+            }
+            else{
+                cout<<"Your input is not valid. Choose add, remove, save, quit again!"<<endl;
+            }
             cin>>input3;
 
         }
