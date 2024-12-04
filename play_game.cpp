@@ -88,7 +88,7 @@ void save(int sudoku[][9]) {
 
 // Check if the game is complete
 bool check_completion(int sudoku[][9]) {
-    int answer[9][9] = {0}
+    int answer[9][9] = {0};
     ifstream file("answer.txt");
     if (!file.is_open()) {
         cout << "Unable to open answer file." << endl;
