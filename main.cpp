@@ -203,7 +203,8 @@ void play_game(int sudoku[][9],int sudoku_copy[][9], vector<string> board){
     while (input3 !="quit"){  
         // add a number to the board, check whether it is correct
         if(input3 == "add"){
-            int row, column, number;
+            int column, number;
+            char row;
             cout << "Enter row(A-I), column(1-9), number(1-9): "<<endl;
             cin >> row>> column>> number;
             add(row -'A',column -1,number, sudoku, board);//user fill in a number
@@ -221,7 +222,8 @@ void play_game(int sudoku[][9],int sudoku_copy[][9], vector<string> board){
         }
         // remove a number from the board
         else if(input3 == "remove") {
-            int row, column;
+            char row;
+            int column;
             cout << "Enter row(A-I), column(1-9): "<<endl;
             cin >> row>> column;          
             removing(row - 'A',column -1, sudoku, board);//remove a number
