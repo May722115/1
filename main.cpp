@@ -124,7 +124,7 @@ int main(){
 
         }
 
-        else if(input == "record"){
+        else if(input == "records"){
 
             showrecords();
             /* This function is a void function it opens the file for records and print it on the screen. The information should be sorted properly*/
