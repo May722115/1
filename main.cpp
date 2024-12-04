@@ -207,17 +207,24 @@ void play_game(int sudoku[][9],int sudoku_copy[][9], vector<string> board){
             char row;
             cout << "Enter row(A-I), column(1-9), number(1-9): "<<endl;
             cin >> row>> column>> number;
+            if(row>='A' && row<='I' && column>=1 && column<=9 && number>=1 && number<=9){
             add(row -'A',column -1,number, sudoku, board);//user fill in a number
 
-            if(check(sudoku)){
-                cout<<"Congradulation! You get the corrent answer!"<<endl;
-                auto end = std::chrono::high_resolution_clock::now();
-                chrono::duration<double> duration = end - start;
-                record(level, duration.count());
+                if(check(sudoku)){
+                    cout<<"Congradulation! You get the corrent answer!"<<endl;
+                    auto end = std::chrono::high_resolution_clock::now();
+                    chrono::duration<double> duration = end - start;
+                    record(level, duration.count());
+                }
                 
-                break;
+                    break;
             }//check whether the game is complete. If yes, quit and stop the timer. Add the time record to the file(use another function).
             cin>>input3;
+            }
+        else{
+            cout<<"Your input is not valid. Choose add, remove, save, quit again!"
+            cin>>inpu3;
+            }
             
         }
         // remove a number from the board
