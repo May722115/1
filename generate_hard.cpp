@@ -14,21 +14,21 @@ int numberboard[9][9] = {0};
 
 //Check for validity of value generated at each position
 bool checkvalid(int numberboard[][9], int number, int row, int col) {
-    //check for columns
+    //check whether the number already exists in the colunms
     for (int i = 0; i < 9; i++) {
         if (numberboard[row][i] == number) {
             return false;
         }
     }
 
-    //check for rows
+    //check whether the number already exists in the rows
     for (int i = 0; i < 9; i++) {
         if (numberboard[i][col] == number) {
             return false;
         }
     }
 
-    //check for 3x3 matrix
+    //check whether the number already exists in the 3x3 matrix
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
             if (numberboard[(row / 3 * 3) + i][(col / 3 * 3) + j] == number) {
@@ -41,30 +41,30 @@ bool checkvalid(int numberboard[][9], int number, int row, int col) {
 
 //generate full number board
 bool generateboard(int numberboard[][9], int row, int col) {
-    //check whether all rows are filled
+    //check whether all rows are filled, exit if all filled
     if (row == 8 && col == 9) {
         return true;
     }
 
-    //check whether all colunms in the row are filled
+    //check whether all colunms in the row are filled, change a row if all filled
     if (col == 9) {
         row++;
         col = 0;
     }
 
-    //check whether the position is filled
+    //check whether the position is filled, if filled, change to another colunm
     if (numberboard[row][col] != 0) {
         return generateboard(numberboard, row, col + 1);
     }
 
-    //fill the number in a row
+    //fill the number in each colunm of a row
     for (int i = 1; i <= 9; i++) {
-        //randomly generateing a number
+        //randomly generateing a number from 1 to 9
         int number = rand() % 9 + 1;
-        //check if the number if valid and fill it in the position
+        //check if the number if valid and fill it in the position if valid
         if (checkvalid(numberboard, number, row, col)) {
             numberboard[row][col] = number;
-            //check whether next valid number exists, repeat previous step if not
+            //check whether next valid number exists, back to previous step if not
             if (generateboard(numberboard, row, col + 1)) {
                 return true;
             }
@@ -74,6 +74,7 @@ bool generateboard(int numberboard[][9], int row, int col) {
     return false;
 }
 
+//check whether the number want to be removed exists
 bool checkremain(int numberboard[][9], int row, int col){
     //check for column
     for (int i = 0; i < 9; i++){
@@ -134,9 +135,10 @@ void removehard(int numberboard[][9]){
     }
 }
 
-//read game board format
+//read game board format from file board.txt
 void formgameboard(vector<string> &board) {
     string line;
+    //open the file
     ifstream fin("board.txt");
 
     //Announce if fail to open
@@ -153,12 +155,12 @@ void formgameboard(vector<string> &board) {
     fin.close();
 }
 
-//fill in the generated problems
+//fill in the generated problems into the board format
 void formatting(vector<string> &board, int numberboard[][9]){
     int row = 0, col = 0;
     char digit;
 
-    //read each line in the format, change . to number hints
+    //read each line in the format, change . to number hints if not removed
     for (string &line : board){
         for (int i = 0; i < line.size(); i++){
             //check if the current character is the position for number hint
@@ -181,7 +183,7 @@ void formatting(vector<string> &board, int numberboard[][9]){
     }
 }
 
-//store generated full board as reference for answer checking
+//store generated full board as external file for later answer checking
 void storeanswer(int numberboard[][9]){
     //create an external file for storage
     ofstream fout("answer.txt");
@@ -199,22 +201,4 @@ void storeanswer(int numberboard[][9]){
     }
     //close file
     fout.close();
-}
-
-int main() {
-    //make it random every time 
-    srand(time(0));
-
-    formgameboard(board);
-    generateboard(numberboard, 0, 0);
-    storeanswer(numberboard);
-
-    removehard(numberboard);
-    formatting(board, numberboard);
-
-    for (string &line : board) {
-        cout << line << endl;
-    }
-
-    return 0;
 }
