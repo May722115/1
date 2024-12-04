@@ -219,7 +219,11 @@ void play_game(int sudoku[][9],int sudoku_copy[][9], vector<string> board){
                 
                     break;}
             //check whether the game is complete. If yes, quit and stop the timer. Add the time record to the file(use another function).
-            cin>>input3;}
+                cout<<"Enter \"add\" to fill in a number"<<endl;
+                cout<<"Enter \"remove\" to remove a number"<<endl;
+                cout<<"Enter \"save\" to same the current game. Note: it will cover the previously saved game."<<endl;
+                cout<<"Enter \"quit\" to quit the game"<<endl;
+                cin>>input3;}
             
             else{
                 cout<<"Your input is not valid. Choose add, remove, save, quit again!"<<endl;
@@ -235,11 +239,17 @@ void play_game(int sudoku[][9],int sudoku_copy[][9], vector<string> board){
             cin >> row>> column;          
             if(row>='A' && row<='I' && column>=1 && column<=9){
                 removing(row - 'A',column -1, sudoku, board);//remove a number
+                cout<<"Enter \"add\" to fill in a number"<<endl;
+                cout<<"Enter \"remove\" to remove a number"<<endl;
+                cout<<"Enter \"save\" to same the current game. Note: it will cover the previously saved game."<<endl;
+                cout<<"Enter \"quit\" to quit the game"<<endl;
+                cin>>input3;
+            
             }
             else{
                 cout<<"Your input is not valid. Choose add, remove, save, quit again!"<<endl;
-            }
-            cin>>input3;
+            
+            cin>>input3;}
 
         }
         // save the board
@@ -247,7 +257,7 @@ void play_game(int sudoku[][9],int sudoku_copy[][9], vector<string> board){
             save(sudoku);//save the game to a file
         }
         else {
-            cout<<"Please enter a valid input"<<endl;
+            cout<<"Please enter a valid input from add, remove, save or quit"<<endl;
             cin>>input3; 
         }
     }
