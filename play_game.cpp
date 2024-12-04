@@ -88,14 +88,13 @@ void save(int sudoku[][9]) {
 
 // Check if the game is complete
 bool check_completion(int sudoku[][9]) {
-    string answer_file = "answer.txt";
-    ifstream file(answer_file);
+    int answer[9][9] = {0}
+    ifstream file("answer.txt");
     if (!file.is_open()) {
         cout << "Unable to open answer file." << endl;
         return false;
     }
 
-    vector<vector<int>> answer(9, vector<int>(9, 0));
     for (int i = 0; i < 9; i++) {
         for (int j = 0; j < 9; j++) {
             file >> answer[i][j]; // Read the correct answer
