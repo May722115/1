@@ -158,7 +158,7 @@ void play_game(int sudoku[][9],int sudoku_copy[][9], vector<string> board){
             remove(filename2);
             cout<<"Please enter number 1-3 to choose difficulty level";
             cin>>level;
-            while(level!=1 || level!=2 || level!=3){
+            while(level!=1 && level!=2 && level!=3){
                 cout<<"please enter a valid input"<<endl;
                 cin>>level;
             }
