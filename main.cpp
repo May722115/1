@@ -187,7 +187,7 @@ void play_game(int sudoku[][9],int sudoku_copy[][9], vector<string> board){
 
         }
     else if(input2 == "load"){
-
+            formgameboard(board);
             load_game(sudoku, board);
                     
             /* This function take the file saved before for user to play*/
