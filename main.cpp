@@ -179,9 +179,9 @@ void play_game(int sudoku[][9],int sudoku_copy[][9], vector<string> board){
             }
             else{
             removehard(sudoku);
-            }
             
-            formatting(board, sudoku);
+            
+            formatting(board, sudoku);}
 
         for (string &line : board) {
         cout << line << endl;
