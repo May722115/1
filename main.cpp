@@ -154,7 +154,7 @@ void play_game(int sudoku[][9],int sudoku_copy[][9], vector<string> board){
     if(input2 == "new"){
             for(int i=0; i<9; i++){
                 for(int j=0; j<9; j++){
-                    sudoku[i][j]=0;
+                    sudoku[i][j]=0;}
             }
             const char* filename1 = "answer.txt";
             const char* filename2 = "save_game.txt";
@@ -179,9 +179,9 @@ void play_game(int sudoku[][9],int sudoku_copy[][9], vector<string> board){
             }
             else{
             removehard(sudoku);
+            }
             
-            
-            formatting(board, sudoku);}
+            formatting(board, sudoku);
 
         for (string &line : board) {
         cout << line << endl;
