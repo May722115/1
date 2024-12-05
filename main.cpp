@@ -46,6 +46,11 @@ void showrecords() {
         int level;
         double time;
 
+        if (line.find("We couldn't find any record. Play a game to start!") != string::npos) {
+            cout << line << endl; 
+            continue;
+        }
+
         if (iss >> level >> time && level > 0) {
             cout << "Level: " << level << " | Time: " << time << " seconds" << endl;
             validRecordFound = true;
