@@ -95,20 +95,25 @@ void removePlaceholderIfNecessary() {
     }
 }
 
-void record(const int &level, double time) { 
+void record(const int &level, double time) {
     vector<Record> recordList;
 
     // Check existing records
-    if (fileExists("game_records.txt")) { 
+    if (fileExists("game_records.txt")) {
         ifstream file("game_records.txt");
         if (file.is_open()) {
             string line;
             while (getline(file, line)) {
+                // Skip placeholder message
+                if (line.find("We couldn't find any record. Play a game to start!") != string::npos) {
+                    continue;
+                }
+
                 istringstream iss(line);
                 Record recordEntry;
 
                 if (!(iss >> recordEntry.level >> recordEntry.time)) {
-                    cerr << "Warning: Skipping invalid record: " << line << endl;
+                    // Skip invalid records
                     continue;
                 }
 
@@ -125,19 +130,26 @@ void record(const int &level, double time) {
         cerr << "Error: Invalid level " << level << ". Record not added." << endl;
     }
 
-    // Sort records by time
     sort(recordList.begin(), recordList.end(), [](const Record &a, const Record &b) {
         return a.time < b.time;
     });
-    
+
     ofstream outfile("game_records.txt");
     if (outfile.is_open()) {
+        // Add header back to the file
+        outfile << "-------------------- Game Records --------------------" << endl;
+
+        // Write sorted records
         for (const auto &rec : recordList) {
-            outfile << rec.level << " " << rec.time << endl;
+            outfile << "Level: " << rec.level << " | Time: " << rec.time << " seconds" << endl;
         }
+
+        // Add footer
+        outfile << "------------------------------------------------------" << endl;
+
         outfile.close();
     } else {
-        cerr << "Error: Unable to write to records.txt." << endl;
+        cerr << "Error: Unable to write to game_records.txt." << endl;
     }
 
     // Display updated records
@@ -147,6 +159,7 @@ void record(const int &level, double time) {
     }
     cout << "----------------------" << endl;
 }
+
 
 
 void play_game(int sudoku[][9],int sudoku_copy[][9], vector<string> board);
