@@ -16,8 +16,9 @@
 using namespace std;
 
 struct Record {
-    int level;
-    double time;
+    int level = -1; 
+    double time = 0.0;
+
     Record(int lvl, double t) : level(lvl), time(t) {}
     Record() = default;
 };
@@ -28,62 +29,81 @@ bool fileExists(const string &filename) {
 }
 
 void showrecords() {
-    ifstream file("records.txt");
+    ifstream file("game_records.txt"); 
     if (!file) {
-    cout << "No records found" << endl;
-    return;
-}
+        cout << "No records found" << endl;
+        return;
+    }
+
     string line;
     cout << "Game Records:" << endl;
-    while (getline(file, line)) { 
-        cout << line << endl; 
+    while (getline(file, line)) {
+        istringstream iss(line);
+        int level;
+        double time;
+
+        if (!(iss >> level >> time)) {
+            cerr << "Warning: Skipping invalid record: " << line << endl;
+            continue;
+        }
+
+        cout << "Level: " << level << " | Time: " << time << " seconds" << endl;
     }
     file.close();
 }
 
-void record(const int &level, double time) {
-    vector<Record> records;
+void record(const int &level, double time) { 
+    vector<Record> recordList;
 
-    // Check if there is a current record, and if none, create record
-    if (fileExists("record.txt")) {
-        ifstream file("record.txt");
+    // Check existing records
+    if (fileExists("game_records.txt")) { 
+        ifstream file("game_records.txt");
         if (file.is_open()) {
             string line;
             while (getline(file, line)) {
                 istringstream iss(line);
-                Record rec;
-                iss >> rec.level >> rec.time;
-                records.push_back(rec);
+                Record recordEntry;
+
+                if (!(iss >> recordEntry.level >> recordEntry.time)) {
+                    cerr << "Warning: Skipping invalid record: " << line << endl;
+                    continue;
+                }
+
+                recordList.push_back(recordEntry);
             }
             file.close();
         }
     }
 
-    // Adding new record
-    records.push_back(Record(level, time));
-    
+    // Add new record
+    if (level > 0) { // Only accept valid levels
+        recordList.push_back(Record(level, time));
+    } else {
+        cerr << "Error: Invalid level " << level << ". Record not added." << endl;
+    }
 
-    // Sorting by time
-    sort(records.begin(), records.end(), [](const Record &a, const Record &b) {
+    // Sort records by time
+    sort(recordList.begin(), recordList.end(), [](const Record &a, const Record &b) {
         return a.time < b.time;
     });
-
-    ofstream outfile("record.txt");
+    
+    ofstream outfile("game_records.txt");
     if (outfile.is_open()) {
-        for (const auto &rec : records) {
+        for (const auto &rec : recordList) {
             outfile << rec.level << " " << rec.time << endl;
         }
         outfile.close();
+    } else {
+        cerr << "Error: Unable to write to records.txt." << endl;
     }
 
     // Display updated records
     cout << "---- Game Records ----" << endl;
-    for (const auto &rec : records) {
+    for (const auto &rec : recordList) {
         cout << "Level: " << rec.level << ", Time: " << rec.time << " seconds" << endl;
     }
     cout << "----------------------" << endl;
 }
-
 
 void play_game(int sudoku[][9],int sudoku_copy[][9], vector<string> board);
 
