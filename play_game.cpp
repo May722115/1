@@ -9,7 +9,7 @@ using namespace std;
 
 //load game function: strart the game
 void load_game(int sudoku[][9], vector<string> &board) {
-    string filename = "game_save.txt";
+    string filename = "save_game.txt";
     ifstream file(filename);
     if (file.is_open()) {
         for (int i = 0; i < 9; i++) {
@@ -70,7 +70,7 @@ void removing(int row, int column, int sudoku[][9], vector<string> &board) {
 
 //save the baord
 void save(int sudoku[][9]) {
-    string filename = "game_save.txt";
+    string filename = "save_game.txt";
     ofstream file(filename);
     if (file.is_open()) { //save board to file
         for (int i = 0; i < 9; i++) {
