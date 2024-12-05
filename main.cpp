@@ -27,6 +27,7 @@ bool fileExists(const string &filename) {
     struct stat buffer;
     return (stat(filename.c_str(), &buffer) == 0);
 }
+void removePlaceholderIfNecessary();
 
 void showrecords() {
     ifstream file("game_records.txt");
