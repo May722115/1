@@ -29,7 +29,7 @@ bool fileExists(const string &filename) {
 }
 
 void showrecords() {
-    ifstream file("record.txt");
+    ifstream file("records.txt");
     if (!file) {
         cout << "No records found" << endl;
         return;
@@ -57,8 +57,8 @@ void record(const int &level, double time) {
     vector<Record> records;
 
     // Check if there is current record - if none, create record
-    if (fileExists("record.txt")) {
-        ifstream file("record.txt");
+    if (fileExists("records.txt")) {
+        ifstream file("records.txt");
         if (file.is_open()) {
             string line;
             while (getline(file, line)) {
