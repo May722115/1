@@ -259,6 +259,7 @@ void play_game(int sudoku[][9],int sudoku_copy[][9], vector<string> board){
         // save the board
         else if(input3 == "save"){
             save(sudoku);//save the game to a file
+            break;
         }
         else {
             cout<<"Please enter a valid input from add, remove, save or quit"<<endl;
