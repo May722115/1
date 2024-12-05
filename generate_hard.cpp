@@ -195,7 +195,7 @@ void storeanswer(int numberboard[][9]){
     //store the answer to external file
     for (int j = 0; j < 9; j++){
         for (int k = 0; k < 9; k++){
-            fout << numberboard[j][k];
+            fout << numberboard[j][k] <<" ";
         }
         fout << endl;
     }
