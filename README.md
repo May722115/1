@@ -23,10 +23,13 @@ Each row, column, and 3x3 subgrid must contain all the numbers from 1 to 9 witho
 You need to fill in the empty cells in a way that satisfies the above rule.
 
 **Filling Cells:**
-
+While playing the game. Enter "add","remove","save" and "quit" to 
 
 **Commands:**
+Enter the command "play" to start playing a game.
 Enter the command "records" to see the current scoreboard, if any. If there have been no games played, no records will be found. Start a game to start a record!
+Enter the command "exit" to exit the programm.
+
 
 **-- Non-standard C++ Libraries --**
 
@@ -44,5 +47,6 @@ Enter the command "records" to see the current scoreboard, if any. If there have
 4. File input/output (e.g., for loading/saving data)
    The complete board generate in function generateboard() is outputed as file answer.txt in function storeanswer() for later reference.
 5. Program codes in multiple files
+
    
    
