@@ -41,7 +41,6 @@ bool checkvalid(int numberboard[][9], int number, int row, int col) {
 
 //generate full number board
 bool generateboard(int numberboard[][9], int row, int col) {
-    srand(time(0));
     //check whether all rows are filled, exit if all filled
     if (row == 8 && col == 9) {
         return true;
