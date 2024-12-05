@@ -29,7 +29,7 @@ bool fileExists(const string &filename) {
 }
 
 void showrecords() {
-    ifstream file("records.txt");
+    ifstream file("game_records.txt"); 
     if (!file) {
         cout << "No records found" << endl;
         return;
@@ -42,66 +42,64 @@ void showrecords() {
         int level;
         double time;
 
-        
         if (!(iss >> level >> time)) {
             cerr << "Warning: Skipping invalid record: " << line << endl;
             continue;
         }
 
-        cout << "Level: " << level << "| Time: " << time << " seconds" << endl;
+        cout << "Level: " << level << " | Time: " << time << " seconds" << endl;
     }
     file.close();
 }
 
-void record(const int &level, double time) {
-    vector<Record> records;
+void record(const int &level, double time) { 
+    vector<Record> recordList;
 
-    // Check if there is current record - if none, create record
-    if (fileExists("records.txt")) {
-        ifstream file("records.txt");
+    // Check existing records
+    if (fileExists("game_records.txt")) { 
+        ifstream file("game_records.txt");
         if (file.is_open()) {
             string line;
             while (getline(file, line)) {
                 istringstream iss(line);
-                Record rec;
+                Record recordEntry;
 
-                // Validate input before parsing
-                if (!(iss >> rec.level >> rec.time)) {
+                if (!(iss >> recordEntry.level >> recordEntry.time)) {
                     cerr << "Warning: Skipping invalid record: " << line << endl;
                     continue;
                 }
 
-                records.push_back(rec);
+                recordList.push_back(recordEntry);
             }
             file.close();
         }
     }
 
-    // Adding new record 
+    // Add new record
     if (level > 0) { // Only accept valid levels
-        records.push_back(Record(level, time));
+        recordList.push_back(Record(level, time));
     } else {
         cerr << "Error: Invalid level " << level << ". Record not added." << endl;
     }
 
-    // Sort by time
-    sort(records.begin(), records.end(), [](const Record &a, const Record &b) {
+    // Sort records by time
+    sort(recordList.begin(), recordList.end(), [](const Record &a, const Record &b) {
         return a.time < b.time;
     });
     
-    ofstream outfile("record.txt");
+    ofstream outfile("game_records.txt");
     if (outfile.is_open()) {
-        for (const auto &rec : records) {
+        for (const auto &rec : recordList) {
             outfile << rec.level << " " << rec.time << endl;
         }
         outfile.close();
     } else {
-        cerr << "Error: Unable to write to record.txt." << endl;
+        cerr << "Error: Unable to write to records.txt." << endl;
     }
 
     // Display updated records
     cout << "---- Game Records ----" << endl;
-    for (const auto &rec : records) {
+    for (const auto &rec : recordList) {
         cout << "Level: " << rec.level << ", Time: " << rec.time << " seconds" << endl;
     }
     cout << "----------------------" << endl;
