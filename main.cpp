@@ -16,8 +16,9 @@
 using namespace std;
 
 struct Record {
-    int level;
-    double time;
+    int level = -1; 
+    double time = 0.0;
+
     Record(int lvl, double t) : level(lvl), time(t) {}
     Record() = default;
 };
@@ -30,13 +31,24 @@ bool fileExists(const string &filename) {
 void showrecords() {
     ifstream file("record.txt");
     if (!file) {
-    cout << "No records found" << endl;
-    return;
-}
+        cout << "No records found" << endl;
+        return;
+    }
+
     string line;
     cout << "Game Records:" << endl;
-    while (getline(file, line)) { 
-        cout << line << endl; 
+    while (getline(file, line)) {
+        istringstream iss(line);
+        int level;
+        double time;
+
+        
+        if (!(iss >> level >> time)) {
+            cerr << "Warning: Skipping invalid record: " << line << endl;
+            continue;
+        }
+
+        cout << "Level: " << level << ", Time: " << time << " seconds" << endl;
     }
     file.close();
 }
@@ -44,7 +56,7 @@ void showrecords() {
 void record(const int &level, double time) {
     vector<Record> records;
 
-    // Check if there is a current record, and if none, create record
+    // Check if there is current record - if none, create record
     if (fileExists("record.txt")) {
         ifstream file("record.txt");
         if (file.is_open()) {
@@ -52,28 +64,39 @@ void record(const int &level, double time) {
             while (getline(file, line)) {
                 istringstream iss(line);
                 Record rec;
-                iss >> rec.level >> rec.time;
+
+                // Validate input before parsing
+                if (!(iss >> rec.level >> rec.time)) {
+                    cerr << "Warning: Skipping invalid record: " << line << endl;
+                    continue;
+                }
+
                 records.push_back(rec);
             }
             file.close();
         }
     }
 
-    // Adding new record
-    records.push_back(Record(level, time));
-    
+    // Adding new record 
+    if (level > 0) { // Only accept valid levels
+        records.push_back(Record(level, time));
+    } else {
+        cerr << "Error: Invalid level " << level << ". Record not added." << endl;
+    }
 
-    // Sorting by time
+    // Sort by time
     sort(records.begin(), records.end(), [](const Record &a, const Record &b) {
         return a.time < b.time;
     });
-
+    
     ofstream outfile("record.txt");
     if (outfile.is_open()) {
         for (const auto &rec : records) {
             outfile << rec.level << " " << rec.time << endl;
         }
         outfile.close();
+    } else {
+        cerr << "Error: Unable to write to record.txt." << endl;
     }
 
     // Display updated records
