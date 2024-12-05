@@ -279,10 +279,30 @@ void play_game(int sudoku[][9],int sudoku_copy[][9], vector<string> board){
             add(row -'A',column -1,number, sudoku, board);//user fill in a number
 
                 if(check_completion(sudoku)){
-                    cout<<"Congradulation! You get the corrent answer!"<<endl;
+                    cout<<"Congratulation! You get the correct answer!"<<endl;
                     auto end = std::chrono::high_resolution_clock::now();
-                    chrono::duration<double> duration = end - start;
-                    record(level, duration.count());
+                    chrono::duration<double> duration_raw = end - start;
+                    double duration=duration_raw.count();
+                    string filename = "time.txt";
+                    double time_taken = 0;
+                    ofstream outputFile;
+                    outputFile.open(filename, ios::app);
+                    if (!outputFile) {
+                    cout << "Error for saving time taken." << endl;
+            
+                    }
+                    outputFile << duration<<" ";
+                    outputFile.close();
+                    ifstream inputFile(filename);
+                    if (!inputFile) {
+                    cout << "Error opening file for time taken." << endl; // Return an error code
+                    }
+                    double value;
+                    while(inputFile>>value){
+                        time_taken+=value;
+                    }
+                    inputFile.close();
+                    record(level, time_taken);
                 
                 
                     break;}
@@ -323,6 +343,19 @@ void play_game(int sudoku[][9],int sudoku_copy[][9], vector<string> board){
         // save the board
         else if(input3 == "save"){
             save(sudoku);//save the game to a file
+            auto pause = std::chrono::high_resolution_clock::now();
+            chrono::duration<double> duration2_raw = pause - start;
+            double duration2=duration2_raw.count();
+            string filename = "time.txt";
+            ofstream outputFile;
+            outputFile.open(filename, ios::app);
+            if (!outputFile) {
+            cout << "Error for saving time taken." << endl;
+            
+            }
+            outputFile << duration2<<" ";
+            outputFile.close();
+
             break;
         }
         else {
