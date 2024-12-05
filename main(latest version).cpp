@@ -29,27 +29,35 @@ bool fileExists(const string &filename) {
 }
 
 void showrecords() {
-    ifstream file("game_records.txt"); 
+    ifstream file("game_records.txt");
     if (!file) {
-        cout << "No records found" << endl;
+        cout << "-------------------- Game Records --------------------" << endl;
+        cout << "We couldn't find any record. Play a game to start!" << endl;
+        cout << "------------------------------------------------------" << endl;
         return;
     }
 
     string line;
-    cout << "Game Records:" << endl;
+    bool validRecordFound = false;
+
+    cout << "-------------------- Game Records --------------------" << endl;
     while (getline(file, line)) {
         istringstream iss(line);
         int level;
         double time;
 
-        if (!(iss >> level >> time)) {
-            cerr << "Warning: Skipping invalid record: " << line << endl;
-            continue;
+        if (iss >> level >> time && level > 0) {
+            cout << "Level: " << level << " | Time: " << time << " seconds" << endl;
+            validRecordFound = true;
         }
-
-        cout << "Level: " << level << " | Time: " << time << " seconds" << endl;
     }
+
     file.close();
+
+    if (!validRecordFound) {
+        cout << "We couldn't find any record. Play a game to start!" << endl;
+    }
+    cout << "------------------------------------------------------" << endl;
 }
 
 void record(const int &level, double time) { 
