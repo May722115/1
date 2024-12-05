@@ -28,7 +28,7 @@ bool fileExists(const string &filename) {
 }
 
 void showrecords() {
-    ifstream file("records.txt");
+    ifstream file("record.txt");
     if (!file) {
     cout << "No records found" << endl;
     return;
