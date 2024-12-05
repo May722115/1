@@ -242,7 +242,7 @@ void play_game(int sudoku[][9],int sudoku_copy[][9], vector<string> board){
                     string filename = "time.txt";
                     double time_taken = 0;
                     ofstream outputFile;
-                    outputFile(filename, ios::app);
+                    outputFile.open(filename, ios::app);
                     if (!outputFile) {
                     cout << "Error for saving time taken." << endl;
             
