@@ -81,12 +81,6 @@ void play_game(){
             generateboard(sudoku, 0, 0);
             std::memcpy(sudoku_copy, sudoku, sizeof(size));
             storeanswer(sudoku);
-            for(int i = 0; i < 9; i++){
-                for(int j = 0; j < 9; j++){
-                    cout << sudoku[i][j];
-                }
-                cout << endl;
-            }
             if(level==1){
                 removeElements(sudoku, sudoku_copy, 20, 1);
 
