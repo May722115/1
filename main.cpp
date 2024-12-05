@@ -48,7 +48,7 @@ void showrecords() {
             continue;
         }
 
-        cout << "Level: " << level << ", Time: " << time << " seconds" << endl;
+        cout << "Level: " << level << "| Time: " << time << " seconds" << endl;
     }
     file.close();
 }
