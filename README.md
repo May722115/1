@@ -50,10 +50,10 @@ Quit: directly go back to main menue.
 2. Data structures for storing data
    Int array is used to store the gameborad while vector<string> structure is used to store the gameboard with format shown in board.txt. 
 3. Dynamic memory management
-   
+   Vector structure is used for storing game board with indications on the top and left.
 4. File input/output (e.g., for loading/saving data)
    The complete board generate in function generateboard() is outputed as file answer.txt in function storeanswer() for later reference.
 5. Program codes in multiple files
-
+   The functions used to generate gameboard, add and delete number, and save the game are written in separate .cpp files. 
    
    
