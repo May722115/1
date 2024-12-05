@@ -38,31 +38,61 @@ void showrecords() {
     }
 
     string line;
-    bool validRecordFound = false;
+    vector<string> records; 
+    bool hasValidRecords = false;
 
-    cout << "-------------------- Game Records --------------------" << endl;
     while (getline(file, line)) {
         istringstream iss(line);
         int level;
         double time;
 
-        if (line.find("We couldn't find any record. Play a game to start!") != string::npos) {
-            cout << line << endl; 
-            continue;
-        }
-
         if (iss >> level >> time && level > 0) {
-            cout << "Level: " << level << " | Time: " << time << " seconds" << endl;
-            validRecordFound = true;
+            records.push_back("Level: " + to_string(level) + " | Time: " + to_string(time) + " seconds");
+            hasValidRecords = true;
         }
     }
-
     file.close();
 
-    if (!validRecordFound) {
+    if (hasValidRecords) {
+        cout << "-------------------- Game Records --------------------" << endl;
+        for (const auto &record : records) {
+            cout << record << endl;
+        }
+        cout << "------------------------------------------------------" << endl;
+
+        removePlaceholderIfNecessary();
+    } else {
+        cout << "-------------------- Game Records --------------------" << endl;
         cout << "We couldn't find any record. Play a game to start!" << endl;
+        cout << "------------------------------------------------------" << endl;
     }
-    cout << "------------------------------------------------------" << endl;
+}
+
+void removePlaceholderIfNecessary() {
+    ifstream file("game_records.txt");
+    vector<string> lines;
+    bool placeholderRemoved = false;
+
+    if (file.is_open()) {
+        string line;
+        while (getline(file, line)) {
+            if (line.find("We couldn't find any record. Play a game to start!") != string::npos) {
+                placeholderRemoved = true;
+                continue; 
+            }
+            lines.push_back(line);
+        }
+        file.close();
+    }
+
+    // Rewrite the file without the placeholder
+    if (placeholderRemoved) {
+        ofstream outfile("game_records.txt");
+        for (const auto &line : lines) {
+            outfile << line << endl;
+        }
+        outfile.close();
+    }
 }
 
 void record(const int &level, double time) { 
