@@ -20,6 +20,7 @@ The goal of Sudoku is to fill a 9x9 grid with numbers so that each row, each col
 
 **Starting Grid:**
 A Sudoku puzzle starts with some cells already filled in. These cells cannot be changed.
+Choose Level 1 for easy, Level 2 for medium and Level 3 for hard.
 
 **Rules:**
 Each row, column, and 3x3 subgrid must contain all the numbers from 1 to 9 without repetition.
@@ -31,17 +32,19 @@ Enter the command "records" to see the current scoreboard, if any. If there have
 Enter the command "exit" to exit the programm.
 
 **Filling Cells:**
-While playing the game. Enter "add","remove","save" and "quit" to implement the corresponding function.
+While playing the game. Enter "add", "remove", "save" and "quit" to implement the corresponding function.
 Add: Type in Row, Column and number to fill a number into a position.
 Remove: Type in Row and Column to remove a number from a position.
-Save: Save the current game and go back to main menue.
+Save: Save the current game and go back to main menu.
 Quit: directly go back to main menue.
 
 
 **-- Non-standard C++ Libraries --**
 
-#include "generate_hard.h" in generate_hard.cpp and main.cpp. Generate_hard.h together with generate_hard.cpp are used for forming generate_hard.o.
-#include "generate_function.h" in generate_function.cpp and main.cpp. Generate_function.h together with generate_function.cpp are used for forming generate_function.o.
+#include "generate_hard.h" in generate_hard.cpp and main.cpp. 
+Generate_hard.h together with generate_hard.cpp are used for forming generate_hard.o.
+#include "generate_function.h" in generate_function.cpp and main.cpp. 
+Generate_function.h together with generate_function.cpp are used for forming generate_function.o.
 #include "play_game.h" in play_game.cpp and main.cpp. Play_game.h together with play_game.cpp are used for forming play_game.o.
 Generate_hard.h, generate_function.h, play_game.h and main.cpp are used together to form main.o.
 
