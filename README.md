@@ -10,6 +10,7 @@ Su Nan 3036265072
 This code mimics the game of Sudoku with 3 different levels (easy, medium, and hard). The levels vary depending on the number of initially given clues. For example, the easy level will have the most initialized clues while the hardest level will have the least initialized clues. Each game shall be recorded under a _record table_ where the scoreboard will be seen according to time of completion and board difficulty. 
 
 **-- Quick Start --**
+   **Very impotant**:rename 'makefile.txt' to 'makefile'.
 Use command "make main" to compile. If compilation succeeds, the a file called "main" shoule be created. Then type "./main" to run the game.
 
 **-- Game Play --** 
