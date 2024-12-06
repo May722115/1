@@ -40,9 +40,9 @@ Quit: directly go back to main menue.
 
 **-- Non-standard C++ Libraries --**
 
-#include "generate_hard.h"
-#include "generate_function.h"
-#include "play_game.h"
+#include "generate_hard.h" in generate_hard.cpp, main.cpp
+#include "generate_function.h" in generate_function.cpp and main.cpp
+#include "play_game.h" in play_game.cpp and main.cpp
 
 **-- Coding Features --**
 1. Generation of random events
