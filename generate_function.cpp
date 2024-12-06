@@ -22,28 +22,6 @@ int* findLessCandidatesPos(int data[][9]);
 void printByRow(int data[][9], int sudoku_copy[][9]);
 void binaryToInt(int data[][9]);
 
-int main() {
-    srand(time(0));
-    int sudoku[9][9] = {0};
-    int sudoku_copy[9][9] = {0};
-    int level;
-
-    // Prompt the user to input the difficulty level
-    std::cout << "Enter the difficulty level (1 for 20 filled spaces, 2 for 35 filled spaces): ";
-    std::cin >> level;
-
-    // Generate a single Sudoku puzzle with the desired number of filled spaces
-    generateboard(sudoku, 0, 0);
-    std::memcpy(sudoku_copy, sudoku, sizeof(sudoku));
-
-    if (level == 1) {
-        removeElements(sudoku, sudoku_copy, 20, 1);
-    } else if (level == 2) {
-        removeElements(sudoku, sudoku_copy, 35, 2);
-    }
-
-    return 0;
-}
 
 bool hasSingleSolution(int sudoku[][9], int level) {
     int tempSudoku[9][9];
